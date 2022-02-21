@@ -1,0 +1,48 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Query {
+  todos(sortProperty:SortOptions,orderOption:OrderOptions): [Todo!]!
+}
+type Mutation {
+  addTodo(input: CreateTodo!): Todo!
+  updateTodo(input: UpdateTodo!): Todo!
+  removeTodo(input: RemoveTodo!): Todo!
+}
+enum SortOptions {
+  createdAt
+  priority
+}
+enum OrderOptions {
+  asc
+  desc
+}
+
+scalar DateTime
+
+type Todo {
+  id: Int!
+  title: String!
+  description: String!
+  priority: Int!
+  createdAt:DateTime
+}
+
+input CreateTodo {
+  title: String!
+  description: String!
+  priority: Int!
+}
+input UpdateTodo {
+  id:Int!
+  title: String!
+  description: String!
+  priority: Int!
+}
+
+input RemoveTodo {
+  id:Int!
+}
+
+
